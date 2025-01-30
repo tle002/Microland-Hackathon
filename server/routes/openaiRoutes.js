@@ -1,6 +1,6 @@
 const express = require("express");
 const {
-  summaryController,
+  AppointmentsController,
   paragraphController,
   chatbotController,
   jsconverterController,
@@ -10,7 +10,7 @@ const {
 const router = express.Router();
 
 //route
-router.post("/summary", summaryController);
+router.post("/Appointments", AppointmentsController);
 router.post("/paragraph", paragraphController);
 router.post("/chatbot", chatbotController);
 router.post("/js-converter", jsconverterController);

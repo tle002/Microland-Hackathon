@@ -8,7 +8,7 @@ import Navbar from "./components/Navbar";
 import Homepage from "./pages/Homepage";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import Summary from "./pages/Summary";
+import Summary from "./pages/Appointments";
 import Paragraph from "./pages/Paragraph";
 import ChatBot from "./pages/ChatBot";
 import JsConverter from "./pages/JsConverter";
@@ -28,7 +28,7 @@ function App() {
           <Route path="/" element={<Homepage />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/summary" element={<Summary />} />
+          <Route path="/appointments" element={<Summary />} />
           <Route path="/paragraph" element={<Paragraph />} />
           <Route path="/chatbot" element={<ChatBot />} />
           <Route path="/js-converter" element={<JsConverter />} />

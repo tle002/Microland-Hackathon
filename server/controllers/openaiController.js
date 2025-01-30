@@ -7,25 +7,20 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API);
-exports.summaryController = async (req, res) => {
+const Appointment = require("../models/appointmentModel.js");
+exports.AppointmentsController = async (req, res) => {
+  console.log("Received request:", req.body);
   try {
-    const { text } = req.body;
-    const { data } = await openai.createCompletion({
-      model: "text-davinci-003",
-      prompt: `Summarize this \n${text}`,
-      max_tokens: 500,
-      temperature: 0.5,
-    });
-    if (data) {
-      if (data.choices[0].text) {
-        return res.status(200).json(data.choices[0].text);
-      }
-    }
+    // Fetch booked slots from MongoDB
+    const bookedAppointments = await Appointment.find({}, "slot -_id");
+
+    // Extracting booked slot times into an array
+    const bookedSlots = bookedAppointments.map(appointment => appointment.slot);
+
+    return res.status(200).json(bookedSlots);
   } catch (err) {
-    console.log(err);
-    return res.status(404).json({
-      message: err.message,
-    });
+    console.error("Error fetching booked slots:", err);
+    return res.status(500).json({ message: "Server error, try again later" });
   }
 };
 exports.paragraphController = async (req, res) => {
@@ -77,7 +72,7 @@ exports.chatbotController = async (req, res) => {
     //console.log("Received request:", req.body);
     const { text } = req.body;
     //console.log("User input:", text);
-    const prefixedText = `say that you are a Health Care Assistant and then response to the user for the following text${text}`;
+    const prefixedText = `you are a healthcare assistance bot. your task is to answer the question ${text}`;
 
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
     const result = await model.generateContent(prefixedText);

@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import ReactMarkdown from "react-markdown";
 import {
   Box,
   Typography,
@@ -12,6 +13,8 @@ import {
   Collapse,
   Card,
   IconButton,
+  Select,
+  MenuItem,
 } from "@mui/material";
 import MicIcon from "@mui/icons-material/Mic";
 import StopIcon from "@mui/icons-material/Stop";
@@ -24,23 +27,31 @@ const ChatBot = () => {
   const [response, setResponse] = useState("");
   const [error, setError] = useState("");
   const [listening, setListening] = useState(false);
+  const [selectedMic, setSelectedMic] = useState("");
+  const [availableMics, setAvailableMics] = useState([]);
+
+  useEffect(() => {
+    navigator.mediaDevices.enumerateDevices().then((devices) => {
+      const mics = devices.filter((device) => device.kind === "audioinput");
+      setAvailableMics(mics);
+      if (mics.length > 0) setSelectedMic(mics[0].deviceId);
+    });
+  }, []);
 
   const loggedIn = JSON.parse(localStorage.getItem("authToken") || "false");
 
-  // Handle text input submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const { data } = await axios.post("http://localhost:8080/api/v1/openai/chatbot", { text });
       setResponse(data);
-      setText(""); // Clear input after sending
+      setText("");
     } catch (err) {
       setError(err.response?.data?.error || err.message);
       setTimeout(() => setError(""), 5000);
     }
   };
 
-  // Voice Recognition
   const handleVoiceInput = () => {
     const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
     recognition.lang = "en-US";
@@ -48,14 +59,17 @@ const ChatBot = () => {
     recognition.interimResults = false;
 
     recognition.onstart = () => setListening(true);
+
     recognition.onresult = (event) => {
       const transcript = event.results[0][0].transcript;
       setText(transcript);
     };
+
     recognition.onerror = (event) => {
       setError("Voice input error: " + event.error);
       setTimeout(() => setError(""), 5000);
     };
+
     recognition.onend = () => setListening(false);
 
     recognition.start();
@@ -64,9 +78,9 @@ const ChatBot = () => {
   return (
     <>
       {!loggedIn ? (
-        <Box p={10} sx={{ display: "flex", justifyContent: "center", alignContent: "flex-start" }}>
+        <Box p={10} sx={{ display: "flex", justifyContent: "center" }}>
           <Typography variant="h3">
-            Please <Link to={"/login"}>Log In</Link> to Continue
+            Please <Link to="/login">Log In</Link> to Continue
           </Typography>
         </Box>
       ) : (
@@ -83,6 +97,19 @@ const ChatBot = () => {
               {error}
             </Alert>
           </Collapse>
+
+          <Select
+            fullWidth
+            value={selectedMic}
+            onChange={(e) => setSelectedMic(e.target.value)}
+            sx={{ mb: 2 }}
+          >
+            {availableMics.map((mic) => (
+              <MenuItem key={mic.deviceId} value={mic.deviceId}>
+                {mic.label || `Microphone ${availableMics.indexOf(mic) + 1}`}
+              </MenuItem>
+            ))}
+          </Select>
 
           <form onSubmit={handleSubmit}>
             <TextField
@@ -111,9 +138,10 @@ const ChatBot = () => {
                 borderRadius: 5,
                 borderColor: "natural.medium",
                 bgcolor: "background.default",
+                p: 2,
               }}
             >
-              <Typography p={2}>{response}</Typography>
+              <ReactMarkdown>{response}</ReactMarkdown>
             </Card>
           ) : (
             <Card
@@ -125,17 +153,14 @@ const ChatBot = () => {
                 borderRadius: 5,
                 borderColor: "natural.medium",
                 bgcolor: "background.default",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                textAlign: "center",
+                p: 2,
               }}
             >
-              <Typography
-                variant="h5"
-                color="natural.main"
-                sx={{
-                  textAlign: "center",
-                  verticalAlign: "middle",
-                  lineHeight: "450px",
-                }}
-              >
+              <Typography variant="h5" color="textSecondary">
                 Hi, I am your Personal Health Assistant. Please input your health history to get started.
               </Typography>
             </Card>
@@ -146,4 +171,4 @@ const ChatBot = () => {
   );
 };
 
-export default ChatBot;
+export default ChatBot;

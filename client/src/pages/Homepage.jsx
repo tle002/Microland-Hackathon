@@ -11,10 +11,10 @@ const Homepage = () => {
       <Box sx={{ display: "flex", flexDirection: "row", justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap' }}>
         <Box p={3} sx={{ display: "flex", flexDirection: "column", justifyContent: 'center', alignItems: 'center' }}>
           <Typography variant="h4" mb={2} fontWeight="bold">
-            Text Generation
+            Appointments
           </Typography>
           <Card
-            onClick={() => navigate("/summary")}
+            onClick={() => navigate("/Appointments")}
             sx={{
               boxShadow: 2,
               display: 'flex',
@@ -36,10 +36,10 @@ const Homepage = () => {
             />
             <Stack p={3} pt={0} mt={2} sx={{ display: "flex", flexDirection: "column", alignItems: 'center' }}>
               <Typography fontWeight="bold" variant="h5">
-                Text Summarizer
+                 Appointments
               </Typography>
               <Typography variant="h6">
-                Summarize long text into short sentences
+                See available slots
               </Typography>
             </Stack>
           </Card>
@@ -81,7 +81,7 @@ const Homepage = () => {
         </Box>
         <Box p={3} sx={{ display: "flex", flexDirection: "column", justifyContent: 'center', alignItems: 'center' }}>
           <Typography variant="h4" mb={2} fontWeight="bold">
-            AI ChatBot
+            Healthcare Chatbot
           </Typography>
           <Card
             onClick={() => navigate("/chatbot")}
@@ -108,7 +108,7 @@ const Homepage = () => {
               <Typography fontWeight="bold" variant="h5">
                 Chatbot
               </Typography>
-              <Typography variant="h6">Chat With AI Chatbot</Typography>
+              <Typography variant="h6">Chat with chatbot</Typography>
             </Stack>
           </Card>
         </Box>
