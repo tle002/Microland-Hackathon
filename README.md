@@ -6,8 +6,9 @@
 ChatGPT (GPT-3) Clone with additional features: 
 - Healthcare Chatbot
 - See Appointments 
+- Patient History
 
-using OpenAI API. 
+using Gemini API. 
 <br>
 MERN Web-App with auth.
 
