@@ -24,7 +24,7 @@ const ChatBot = () => {
   useEffect(() => {
     const fetchBookedSlots = async () => {
       try {
-        const { data } = await axios.get("http://localhost:8080/api/v1/Appointments");
+        const { data } = await axios.get("http://localhost:8080/api/v1/openai/Appointments");
         setBookedSlots(data);
       } catch (err) {
         console.error("Error fetching booked slots", err);

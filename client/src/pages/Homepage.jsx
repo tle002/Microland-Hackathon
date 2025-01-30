@@ -46,41 +46,6 @@ const Homepage = () => {
         </Box>
         <Box p={3} sx={{ display: "flex", flexDirection: "column", justifyContent: 'center', alignItems: 'center' }}>
           <Typography variant="h4" mb={2} fontWeight="bold">
-            Paragraph Generation
-          </Typography>
-          <Card
-            onClick={() => navigate("/paragraph")}
-            sx={{
-              boxShadow: 2,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              borderRadius: 5,
-              height: 250,
-              width: 250,
-              "&:hover": {
-                border: 2,
-                boxShadow: 0,
-                borderColor: "primary.dark",
-                cursor: "pointer",
-              },
-            }}
-          >
-            <FormatAlignLeftOutlined
-              sx={{ fontSize: 80, color: "primary.main", mt: 2, ml: 2 }}
-            />
-            <Stack p={3} pt={0} mt={2} sx={{ display: "flex", flexDirection: "column", alignItems: 'center' }}>
-              <Typography fontWeight="bold" variant="h5">
-                Paragraph Generator
-              </Typography>
-              <Typography variant="h6">
-                Generate Paragraph with words
-              </Typography>
-            </Stack>
-          </Card>
-        </Box>
-        <Box p={3} sx={{ display: "flex", flexDirection: "column", justifyContent: 'center', alignItems: 'center' }}>
-          <Typography variant="h4" mb={2} fontWeight="bold">
             Healthcare Chatbot
           </Typography>
           <Card
@@ -114,7 +79,7 @@ const Homepage = () => {
         </Box>
         <Box p={3} sx={{ display: "flex", flexDirection: "column", justifyContent: 'center', alignItems: 'center' }}>
           <Typography variant="h4" mb={2} fontWeight="bold">
-            Javascript Converter
+            Medical History
           </Typography>
           <Card
             onClick={() => navigate("/js-converter")}
@@ -137,47 +102,25 @@ const Homepage = () => {
             <ChatRounded
               sx={{ fontSize: 80, color: "primary.main", mt: 2, ml: 2 }}
             />
-            <Stack p={3} pt={0} mt={2} sx={{ display: "flex", flexDirection: "column", alignItems: 'center' }}>
-              <Typography fontWeight="bold" variant="h5">
-                JS CONVERTER
-              </Typography>
-              <Typography variant="h6">
-                Translate English to JavaScript code
-              </Typography>
-            </Stack>
-          </Card>
-        </Box>
-        <Box p={3} sx={{ display: "flex", flexDirection: "column", justifyContent: 'center', alignItems: 'center' }}>
-          <Typography variant="h4" mb={2} fontWeight="bold">
-            AI SCIFI Images
-          </Typography>
-          <Card
-            onClick={() => navigate("/scifi-image")}
-            sx={{
-              boxShadow: 2,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              borderRadius: 5,
-              height: 250,
-              width: 250,
-              "&:hover": {
-                border: 2,
-                boxShadow: 0,
-                borderColor: "primary.dark",
-                cursor: "pointer",
-              },
-            }}
-          >
-            <ChatRounded
-              sx={{ fontSize: 80, color: "primary.main", mt: 2, ml: 2 }}
-            />
-            <Stack p={3} pt={0} mt={2} sx={{ display: "flex", flexDirection: "column", alignItems: 'center' }}>
-              <Typography fontWeight="bold" variant="h5">
-                Scifi Image
-              </Typography>
-              <Typography variant="h6">Generate Scifi images</Typography>
-            </Stack>
+            <Stack 
+  p={3} 
+  pt={0} 
+  mt={2} 
+  sx={{ 
+    display: "flex", 
+    flexDirection: "column", 
+    alignItems: "center", 
+    justifyContent: "center", 
+    textAlign: "center" // Ensures text is centered
+  }}
+>
+  <Typography fontWeight="bold" variant="h5" align="center">
+    History
+  </Typography>
+  <Typography variant="h6" align="center">
+    Click here to check your medical history
+  </Typography>
+</Stack>
           </Card>
         </Box>
       </Box>

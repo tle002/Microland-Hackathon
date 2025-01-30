@@ -8,11 +8,8 @@ import Navbar from "./components/Navbar";
 import Homepage from "./pages/Homepage";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import Summary from "./pages/Appointments";
-import Paragraph from "./pages/Paragraph";
+import Appointment from "./pages/Appointments";
 import ChatBot from "./pages/ChatBot";
-import JsConverter from "./pages/JsConverter";
-import ScifiImage from "./pages/ScifiImage";
 import Footer from "./components/Footer";
 
 function App() {
@@ -28,11 +25,8 @@ function App() {
           <Route path="/" element={<Homepage />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/appointments" element={<Summary />} />
-          <Route path="/paragraph" element={<Paragraph />} />
+          <Route path="/appointments" element={<Appointment />} />
           <Route path="/chatbot" element={<ChatBot />} />
-          <Route path="/js-converter" element={<JsConverter />} />
-          <Route path="/scifi-image" element={<ScifiImage />} />
         </Routes>
         <Footer />
       </ThemeProvider>

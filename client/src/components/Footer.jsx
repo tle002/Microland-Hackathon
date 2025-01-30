@@ -6,7 +6,7 @@ export default function Footer() {
         <div style={{display: "flex", justifyContent:"center", alignItems: "center", position: "fixed", bottom:"0", left:"0", right:"0"}}>
             <span style={{marginRight:"5px", fontSize:"1.2rem", fontWeight:"bold"}}>{`<`}{`/`}{`>`}</span>
             <p style={{fontWeight:"bold"}}>
-                Developed by<a href="https://github.com/gjha133" target="blank" style={{padding:"5px"}}>Gautam Jha</a>
+                Developed by<a href="https://github.com/tle002/Microland-Hackathon" target="blank" style={{padding:"5px"}}>Group 1</a>
             </p>
         </div>
     )
